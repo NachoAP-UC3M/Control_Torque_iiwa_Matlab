@@ -1,0 +1,7 @@
+<launch>
+
+   <!-- This lauch file just loads the URDF with the given hardware interface and robot name into the ROS Parameter Server --> 
+  <arg name="robot_name" default="iiwa"/>
+  
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find iiwa_description)/urdf/iiwa14.urdf.xacro' robot_name:=$(arg robot_name)" />
+</launch> 

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+  <name>iiwa_gazebo</name>
+  <version>1.5.0</version>
+  <description>This package allows to load a KUKA LBR IIWA robot onto Gazebo and implements a plugin to allow torque-control</description>
+  <author email="user@todo.todo">user</author>
+  <maintainer email="user@todo.todo">user</maintainer>
+
+  <license>TODO</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>iiwa_msgs</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>iiwa_description</run_depend>
+  <run_depend>gazebo_ros</run_depend> 
+  <run_depend>iiwa_msgs</run_depend>
+  <export>
+    <gazebo_ros plugin_path="${prefix}/lib" gazebo_media_path="${prefix}" />
+  </export>
+</package>
