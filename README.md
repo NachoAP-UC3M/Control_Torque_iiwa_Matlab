@@ -49,9 +49,7 @@ source /home/nacho/catkin_ws/devel/setup.bash
 
 IP="$(ifconfig |grep -A 1 "wlp2s0" |tail -1 |cut -d ":" -f 2| cut -d " " -f 1)"
 
-##export ROS_MASTER_URI=http://nacho-Aspire-E5-571G:11311
-export ROS_IP=$IP #160.69.69.100
-#export ROS_IP=192.168.0.175
+export ROS_IP=$IP
 export ROS_MASTER_URI=http://$ROS_IP:11311
 export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
 
@@ -59,7 +57,7 @@ export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
 
 CHANGE nacho BY your user name. 
 example: 
-if your user name is Paco
+⋅⋅⋅if your user name is Paco
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/Paco/catkin_ws```
 
 CHANGE catkin_ws by your_workspace_name
