@@ -4,7 +4,7 @@
 Controlar el iiwa simulado en gazebo mediante ros y Matlab
 
 
-## Topics modificados con respecto al [código de Matlab original](https://www.mathworks.com/help/robotics/examples/control-lbr-manipulator-motion-through-joint-torque.html)
+## Topics modificados con respecto al código de Matlab original [link](https://www.mathworks.com/help/robotics/examples/control-lbr-manipulator-motion-through-joint-torque.html)
 
   * /iiwa_gazebo_plugin/joint_state : Se recibe en él:  
                   
@@ -59,20 +59,16 @@ export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
 
 example:
 
-⋅⋅⋅if your user name is Paco⋅⋅
-
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
+if your user name is Paco
 
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/Paco/catkin_ws```
 
 CHANGE catkin_ws by your_workspace_name
+
 example:
+
 if your user name is MyWorkspace
+
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/nacho/MyWorkspace```
 
 CHANGE to your Ubuntu distribution.
@@ -84,6 +80,19 @@ CHANGE in IP the name wlp2s0 by your internet connection name. Write in the term
 ifconfig
 ```
 and check this [link](https://www.mundotelematico.com/linux-variable-de-entorno-con-direccion-ip-del-equipo/) to learn to change it.
+
+## Archivo de Matlab básico para comandar el robot por Torque
+
+``` src>MatlabExamples>LBRTorqueControlExample ```
+
+[link](https://github.com/NachoAP-UC3M/Control_Torque_iiwa_Matlab/blob/master/src/MatlabExamples/LBRTorqueControlExample.m)
+
+## Archivo de Matlab modificado por mí para comandar el robot por Torque  
+
+``` src>MatlabExamples>LBRTorqueControl_ModificadoNacho ```
+
+[link](https://github.com/NachoAP-UC3M/Control_Torque_iiwa_Matlab/blob/master/src/MatlabExamples/LBRTorqueControl_ModificadoNacho.m)
+
 
 
 
