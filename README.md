@@ -55,10 +55,11 @@ export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
 
 ```
 
-CHANGE nacho BY your user name. 
+1. CHANGE nacho BY your user name. 
+
 example:
 
-⋅⋅⋅if your user name is Paco
+⋅⋅⋅if your user name is Paco⋅⋅
 
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/Paco/catkin_ws```
 
