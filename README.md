@@ -63,7 +63,7 @@ if your user name is Paco
 
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/Paco/catkin_ws```
 
-CHANGE catkin_ws by your_workspace_name
+2. CHANGE catkin_ws by your_workspace_name
 
 example:
 
@@ -71,15 +71,34 @@ if your user name is MyWorkspace
 
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/nacho/MyWorkspace```
 
-CHANGE to your Ubuntu distribution.
+3. CHANGE to your Ubuntu distribution.
 
 ```source /opt/ros/kinetic/setup.bash```
 
-CHANGE in IP the name wlp2s0 by your internet connection name. Write in the terminal:
+4. CHANGE in IP the name wlp2s0 by your internet connection name. Write in the terminal:
 ```
 ifconfig
 ```
 and check this [link](https://www.mundotelematico.com/linux-variable-de-entorno-con-direccion-ip-del-equipo/) to learn to change it.
+
+* Restart the terminal and check it worked by typing
+
+Write in the terminal
+
+``` roscd ```
+
+It should lead you to ```~/catkin_ws``` in my case. ```~/your_workspace_name``` in your case.
+
+* Compile the workspace
+
+Write in the terminal
+
+``` roscd 
+catkin_make
+```
+
+* Execute in an Ubuntu terminal: 
+``` roslaunch iiwa_gazebo iiwa_world.launch ```
 
 ## Archivo de Matlab básico para comandar el robot por Torque
 
