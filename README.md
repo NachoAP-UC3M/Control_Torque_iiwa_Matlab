@@ -4,7 +4,7 @@
 Controlar el iiwa simulado en gazebo mediante ros y Matlab
 
 
-## Topics modificados:
+## Topics modificados con respecto al [código de Matlab original](https://www.mathworks.com/help/robotics/examples/control-lbr-manipulator-motion-through-joint-torque.html)
 
   * /iiwa_gazebo_plugin/joint_state : Se recibe en él:  
                   
@@ -60,6 +60,13 @@ export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
 example:
 
 ⋅⋅⋅if your user name is Paco⋅⋅
+
+⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we'll use three here to also align the raw Markdown).
+
+⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
+⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
+⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
+
 
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/Paco/catkin_ws```
 
