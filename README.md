@@ -8,9 +8,9 @@ Controlar el iiwa simulado en gazebo mediante ros y Matlab
 
   * /iiwa_gazebo_plugin/joint_state : Se recibe en él:  
                   
-                  -Position : posición articular
+                  -Position : posición articular (radianes)
                                                       
-                  -Velocity: velocidad articular
+                  -Velocity: velocidad articular (radianes/s)
                   
                   -Effort : torque de cada articulación
                   
@@ -56,8 +56,10 @@ export GAZEBO_PLUGIN_PATH=$HOME/gazebo_plugin_tutorial/build:$GAZEBO_PLUGIN_PATH
 ```
 
 CHANGE nacho BY your user name. 
-example: 
+example:
+
 ⋅⋅⋅if your user name is Paco
+
 ```export ROS_WORKSPACE=/home/nacho/catkin_ws``` by ```export ROS_WORKSPACE=/home/Paco/catkin_ws```
 
 CHANGE catkin_ws by your_workspace_name
