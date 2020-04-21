@@ -20,14 +20,17 @@ Controlar el iiwa simulado en gazebo mediante ros y Matlab
   
 ## Configuración
 
-Download the whole repo wherever you want to have your workspace, for example, in the ```/home/user folder ```
+Download the whole repo wherever you want to have your workspace, for example, in the ```/home/user/catkin_ws folder ```
+
+1. CHANGE user BY your user name.
+2. CHANGE catkin_ws BY your workspace name.
 
 ```
-cd ~
+cd catkin_ws/
 git clone https://github.com/NachoAP-UC3M/Control_Torque_iiwa_Matlab
 ```
 
-* Modify .bashrc to use this workspace and set the ROS_IP and ROS_WORKSPACE env variables. Change the IP for your IP. Open a terminal and write:
+* Modify .bashrc file to use this workspace and set the ROS_IP and ROS_WORKSPACE enviroment variables. Change the IP for your IP. Open a terminal and write:
 
 ```
 cd 
