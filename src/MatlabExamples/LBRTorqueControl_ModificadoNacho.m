@@ -1,5 +1,6 @@
 %% Aclaración %%
-%SE ACONSEJA ENTENDER EL ARCHIVO: "LBRTorqueControlExample.m " 
+%
+% SE ACONSEJA ENTENDER EL ARCHIVO: "LBRTorqueControlExample.m " 
 % ya que este es simplemente una modificación del archivo base "LBRTorqueControlExample.m " 
 
 %% Bibliografía 
@@ -17,6 +18,7 @@
 
 %% Código
 
+clear all;close all;
 % Cargamos el modelo del robot
 lbr = importrobot('iiwa14.urdf');
 lbr.DataFormat = 'row';
@@ -37,6 +39,42 @@ lbr.Gravity = [0 0 -9.80];
 trayectoria = 1;
 [tWaypoints,qWaypoints] = TrayectoryGenerator_IJLDataAdquisition(trayectoria);
 
+% PARTE REPRESENTAR
+
+lbr.Bodies{1,2}.Joint.HomePosition = qWaypoints(1,1);
+lbr.Bodies{1,3}.Joint.HomePosition = qWaypoints(1,2);
+lbr.Bodies{1,4}.Joint.HomePosition = qWaypoints(1,3);
+lbr.Bodies{1,5}.Joint.HomePosition = qWaypoints(1,4);
+lbr.Bodies{1,6}.Joint.HomePosition = qWaypoints(1,5);
+lbr.Bodies{1,7}.Joint.HomePosition = qWaypoints(1,6);
+lbr.Bodies{1,8}.Joint.HomePosition = qWaypoints(1,7);
+
+
+% Show home configuration in a MATLAB figure.
+figure; hold on;
+show(lbr);
+
+lbr.Bodies{1,2}.Joint.HomePosition = qWaypoints(end,1);
+lbr.Bodies{1,3}.Joint.HomePosition = qWaypoints(end,2);
+lbr.Bodies{1,4}.Joint.HomePosition = qWaypoints(end,3);
+lbr.Bodies{1,5}.Joint.HomePosition = qWaypoints(end,4);
+lbr.Bodies{1,6}.Joint.HomePosition = qWaypoints(end,5);
+lbr.Bodies{1,7}.Joint.HomePosition = qWaypoints(end,6);
+lbr.Bodies{1,8}.Joint.HomePosition = qWaypoints(end,7);
+
+show(lbr);
+view([150 12]);
+axis([-0.8 0.8 -0.8 0.8 0 1.35]);
+camva(9);
+daspect([1 1 1]);
+
+
+%   qWaypoints =    [0 0 0 0 0 0 0;
+%                    qWaypoints(1,:)
+%                     qWaypoints(end,:)];
+% 
+%   tWaypoints = [0,1,3];
+
 % If trayectory doesn't start in homeposition ( articular position 
 % q = [0 0 0 0 0 0 0] ) it create a new trayectory adding the start in the
 % homeposition
@@ -44,27 +82,6 @@ trayectoria = 1;
 [tWaypoints,qWaypoints] = redireccionarInicioTrayectoria(tWaypoints,qWaypoints);
 
 %%% TRAYECTORIA CREADA MANUALMENTE
-
-% q_original = qWaypoints;
-%  qWaypoints =    [0 0 0 0 0 0 0;
-%                   q_original(end,:)];
-%  tWaypoints = [0,1];
- 
-lbr.Bodies{1,2}.Joint.HomePosition = 0;
-lbr.Bodies{1,3}.Joint.HomePosition = 0;
-lbr.Bodies{1,4}.Joint.HomePosition = 0;
-lbr.Bodies{1,5}.Joint.HomePosition = 0;
-lbr.Bodies{1,6}.Joint.HomePosition = 0;
-lbr.Bodies{1,7}.Joint.HomePosition = 0;
-lbr.Bodies{1,8}.Joint.HomePosition = 0;
-
-
-% Show home configuration in a MATLAB figure.
-show(lbr);
-view([150 12]);
-axis([-0.6 0.6 -0.6 0.6 0 1.35]);
-camva(9);
-daspect([1 1 1]);
 
 % INICIAR A CERO para que calcule los esfuerzos correctamente
 
@@ -99,6 +116,7 @@ tauFeedForward = zeros(n,7);
 for i = 1:n
     tauFeedForward(i,:) = inverseDynamics(lbr, qDesired(i,:), qdotDesired(i,:), qddotDesired(i,:));
 end
+
 
 % COMPROBACION TRAYECTORIA, TORQUE CALCULADO
 for i=1:7
@@ -187,17 +205,6 @@ for i = 1:n
         break
     end
     
-    % Log joint positions data.
-    N_Q(i,:) = q';
-    N_QDesired(i,:) = qDesired(h,:);
-    
-    % Log Velocity joint data
-    N_Qdot(i,:) = qdot';
-    N_QdotDesired(i,:) = qdotDesired(h,:);
-    
-    % Log Acceleration joint data
-    % Lo calculamos con los datos obtenidos
-    
     % Inquire feed-forward torque at the time when the joint state is
     % updated (Gazebo sim time).
     tau1 = tauFeedForward(h,:);
@@ -219,6 +226,25 @@ for i = 1:n
     % Send torque to Gazebo.
     jtMsg.Effort = tau;
     
+    %%% INPUT DATA %%%
+    % Log joint positions data.
+    Q(i,:) = q';
+    N_QDesired(i,:) = qDesired(h,:);
+    
+    % Log Velocity joint data
+    Qdot(i,:) = qdot';
+    N_QdotDesired(i,:) = qdotDesired(h,:);
+    
+    % Log Acceleration joint data
+    % No lo podemos calcular
+    
+    % Log Tau IDeal
+    tau_ID(i,:) = tau1;
+    
+    % Log Tau real
+    tau_real(i,:) = qtorque;
+    
+    
     torques_commanded(i,:)=tau;
     torques_read(i,:)=qtorque;
     t_measured(i) = tiempo_actual-t_measured_init;
@@ -229,8 +255,9 @@ end
 for i=1:7
     figure;hold on;
     plot(t_measured,torques_commanded(:,i));
-    plot(t_measured,torques_read(:,i));
-    legend('commanded', 'read');
+    plot(t_measured,tau_ID(:,i));
+    plot(t_measured,tau_real(:,i));
+    legend('commanded', 'ideal','read');
 end
 
 % save('Trayectoria1_Real.mat','Q','torques_commanded','torques_read')
@@ -245,13 +272,14 @@ end
 % Miramos si las posiciones calculadas son correctas
 for i=1:7
     figure;hold on;
-    plot(t_measured,N_Q(:,i));
-    legend('Position Measured');
+    plot(t_measured,Q(:,i));
+    plot(tt,qDesired(:,i));
+    legend('Position Measured(radians)','Position Ideal calculated(radians)');
 end
 
 % CALCULAMOS VELOCIDAD a partir de la posicion y tiempo
-for i=1:size(N_Q,1)-1
-    q_calculated(i,:) = (N_Q(i+1,:)-N_Q(i,:))/(t_measured(i+1)-t_measured(i));
+for i=1:size(Q,1)-1
+    q_calculated(i,:) = (Q(i+1,:)-Q(i,:))/(t_measured(i+1)-t_measured(i));
 end
 
 % q_corregida = q_calculated;
@@ -261,7 +289,7 @@ end
 % REPRESENTAR VELOCIDAD medida y calculada
 for i=1:7
     figure;hold on;
-    plot(t_measured,N_Qdot(:,i),'b');
+    plot(t_measured,Qdot(:,i),'b');
     plot(t_measured(2:end),q_calculated(:,i),'r');
     legend('Velocity Measured', 'Velocity calculated');
 end
@@ -278,6 +306,8 @@ for i=1:7
     plot(t_measured(2:end),qddot_calculated(:,i),'r');
     legend('Acceleration calculated');
 end
+
+% save('Input-Dataset-Trayectory9.mat','t_measured','Q','Qdot','tau_ID','tau_real')
 
 %% Pruebas Narpa
 

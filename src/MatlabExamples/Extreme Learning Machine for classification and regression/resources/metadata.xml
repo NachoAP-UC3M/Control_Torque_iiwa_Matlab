@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addOn>
+  <identifier>b5e7ac91-d21c-491d-a4ca-f537f5365f91</identifier>
+  <displayType>Collection</displayType>
+  <translatedDisplayType>
+    <en_US>Collection</en_US>
+    <ja_JP>コレクション</ja_JP>
+    <ko_KR>컬렉션</ko_KR>
+    <zh_CN>集合</zh_CN>
+  </translatedDisplayType>
+  <name>Extreme Learning Machine for classification and regression</name>
+  <author>BERGHOUT Tarek</author>
+  <version>2.0.0</version>
+  <downloadUrl>https://www.mathworks.com/matlabcentral/mlc-downloads/downloads/b5e7ac91-d21c-491d-a4ca-f537f5365f91/c11d1e65-3d2d-46c1-93bb-ca8b3b3167cf/packages/zip?src=addons_ml_desktop_install&amp;profile_id=13727671&amp;license=1146377&amp;release_family=R2019b</downloadUrl>
+  <licenseUrl>https://addons.mathworks.com/registry/v1/b5e7ac91-d21c-491d-a4ca-f537f5365f91/2.0.0/-/license</licenseUrl>
+  <previewImageUrl>https://www.mathworks.com/responsive_image/160/120/0/0/0/cache/matlabcentral/mlc-downloads/downloads/b5e7ac91-d21c-491d-a4ca-f537f5365f91/c11d1e65-3d2d-46c1-93bb-ca8b3b3167cf/images/screenshot.jpg</previewImageUrl>
+  <releaseNotesUrl>https://www.mathworks.com/add-ons/b5e7ac91-d21c-491d-a4ca-f537f5365f91/c11d1e65-3d2d-46c1-93bb-ca8b3b3167cf/releaseNotes</releaseNotesUrl>
+  <installationFolder>Collections</installationFolder>
+</addOn>
